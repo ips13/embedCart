@@ -1,0 +1,47 @@
+<html>
+<head>
+	<script>
+	
+		function EmbedCartBuyInit(){
+			
+			var client = EmbedCartBuy.client.buildClient({
+				socket	: 'http://',
+				domain	: 'localhost/embedCart',
+				products: {
+					'embedcart-first' : [1,2,3,4],
+					'embedcart-second' : [5,6,8,9]
+				},
+				settings: {
+					price: true,
+					buttonColor: "0B76C9",
+					buttonTxtColor: 'fff',
+					bgColor: '0B76C9',
+					buttonTxt: 'Buy Now'
+				}
+			});
+			//console.log(client);
+		}
+		
+		(function () {
+			var scriptURL = 'lib.js';
+			window.EmbedCartBuy ? EmbedCartBuyInit() : loadScript();
+
+			function loadScript() {
+				var script = document.createElement('script');
+				script.async = true;
+				script.src = scriptURL;
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+				script.onload = EmbedCartBuyInit;
+			}
+		})();
+		
+	</script>
+	<style>
+		body{margin:0px;}
+	</style>
+</head>
+<body>
+	<div id="embedcart-first" class="embedcart-buy-frame embedcart-buy-frame--product"></div>
+	<div id="embedcart-second" class="embedcart-buy-frame embedcart-buy-frame--product"></div>
+</body>
+</html>
